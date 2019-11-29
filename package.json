@@ -1,1 +1,18 @@
-{  "name": "node.inital.project",  "version": "1.0.0",  "description": "",  "main": "app.js",  "scripts": {    "test": "echo \"no mocha installed yet\" && exit 1",    "start": "node app.js"  },  "author": "Marin Andros",  "license": "ISC",  "dependencies": {    "nodemon": "^2.0.1"  }}
+{
+  "name": "node.inital.project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"no mocha installed yet\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Marin Andros",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
