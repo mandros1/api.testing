@@ -1,25 +1,26 @@
+const dotenv = require('dotenv').config();
+
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+const apiPort = process.env.API_PORT || 3000;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
-app.post('/product', (req, res, next) => {
-    const { body } = req;
-    console.log(body);
-    res.redirect('/');
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
-app.use( '/add-product', (req, res, next) =>{
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>');
-    next(); // Skip not to execute any other response.sends
+app.listen(apiPort, () => {
+    console.log(`Server is up and running on localhost:${apiPort}`)
 });
-
-app.use( '/', (req, res, next) =>{
-    res.send('<h1>Hello from express brah</h1>');
-});
-
-app.listen(3000);
 
